@@ -1,16 +1,16 @@
 import java.lang.Math;
 
 public class Account {
-    String name;
-    float checking, saving;
-    
-    public static void Create_Account(String name,float checking, float saving) {
+    public static void createAccount(String name,float checking, float saving) {
         int ids = (int) Math.random();
         System.out.println("Your Account id is " + ids);
     }
     
-    public void display_account() {
-        System.out.println("Hello " + name + "Here's your Checking's and Saving's "+ checking + saving);
+    public static void viewAccount(int id) {
+        FileReader fReader = new FileReader();
+        System.out.println("\nName: "+fReader.getName(id));
+        System.out.println("Checking account balance: $"+fReader.getChecking(id));
+        System.out.println("Savings account balance: $"+fReader.getSavings(id));
+        System.out.println("\n\n");
     }
-    
 }
