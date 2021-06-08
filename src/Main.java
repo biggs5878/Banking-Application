@@ -12,6 +12,26 @@ public class Main {
                 inputString = input.nextLine();
                 Account.viewAccount(Integer.parseInt(inputString));
             }
+            if (inputString.equals("2")) {
+                System.out.println("Please enter your account ID.");
+                inputString = input.nextLine();
+                Account.viewAccount(Integer.parseInt(inputString));
+            }
+            if (inputString.equals("3")) {
+                System.out.println("Please enter your account ID.");
+                inputString = input.nextLine();
+                Account.viewAccount(Integer.parseInt(inputString));
+            }
+            if (inputString.equals("4")) {
+                System.out.println("Please enter your account ID.");
+                inputString = input.nextLine();
+                Account.viewAccount(Integer.parseInt(inputString));
+            }
+            if (inputString.equals("5")) {
+                System.out.println("Please enter your account ID.");
+                inputString = input.nextLine();
+                Account.viewAccount(Integer.parseInt(inputString));
+            }
         }
 
 

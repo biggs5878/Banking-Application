@@ -13,4 +13,8 @@ public class Account {
         System.out.println("Savings account balance: $"+fReader.getSavings(id));
         System.out.println("\n\n");
     }
+    public static void depositcheckings() {
+        FileReader fReader = new FileReader();
+
+    }
 }
