@@ -17,7 +17,7 @@ public class Main {
                 inputString = input.nextLine();
                 System.out.println("Please enter deposit amount.");
                 String inputString2 = input.nextLine();
-                Account.depositcheckings(Integer.parseInt(inputString),Integer.parseInt(inputString2));
+                Account.depositCheckings(Integer.parseInt(inputString),Double.parseDouble(inputString2));
             }
             if (inputString.equals("3")) {
                 System.out.println("Please enter your account ID.");
@@ -35,14 +35,6 @@ public class Main {
                 Account.viewAccount(Integer.parseInt(inputString));
             }
         }
-
-
-    }
-
-
-
-    public static void Input_Amount() {
-        Scanner input = new Scanner(System.in);
     }
 }
 

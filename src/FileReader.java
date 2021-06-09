@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class FileReader {
@@ -59,29 +56,35 @@ public class FileReader {
         }
     }
 
-    public void changechecking(int id, int amount) {
-
+    public void changeChecking(int id, double amount) {
+        // copies data to temp, deletes everything in data and copies everything from temp back to data with modifications
         try {
             File temp = new File("src//tempdata.csv");
             File data = new File("src//data.csv");
-            FileWriter writer = new FileWriter(temp);
-            Scanner reader = new Scanner(data);
-            reader.useDelimiter(",");
+            BufferedWriter copyWriter = new BufferedWriter(new FileWriter(temp,false));
+            Scanner reader = new Scanner(temp);
+            Scanner copyReader = new Scanner(data);
 
+            while (copyReader.hasNextLine()) {
+                String copyLine = copyReader.nextLine();
+                copyWriter.write(copyLine+"\n");
+            }
+            copyWriter.flush();
+            copyWriter.close();
+            copyReader.close();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(data,false));
 
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
-                int inputId = Integer.parseInt(reader.next());
-                if (inputId == id) {
-                    writer.write(id+",");
-                    int checking = Integer.parseInt(reader.next()) + amount;
-                    writer.write(checking+",");
-                    writer.write(reader.next()+System.lineSeparator());
+                String[] lineElements = line.split(",");
+                if (Integer.parseInt(lineElements[0]) == id) {
+                    writer.write(lineElements[0]+","+lineElements[1]+","+(Double.parseDouble(lineElements[2])+amount)+","+lineElements[3]+System.lineSeparator());
                 }
-                else writer.write(line);
-                reader.nextLine();
+                else writer.write(line+System.lineSeparator());
             }
-            //boolean success = temp.renameTo(data);
+            writer.flush();
+            writer.close();
+            reader.close();
         } catch (FileNotFoundException ex) {
         } catch (IOException ex) {
         }
