@@ -56,7 +56,7 @@ public class FileReader {
         }
     }
 
-    public void changeChecking(int id, double amount) {
+    public void changeBalance(int id, double amount, boolean ischecking) {
         // copies data to temp, deletes everything in data and copies everything from temp back to data with modifications
         try {
             File temp = new File("src//tempdata.csv");
@@ -78,7 +78,12 @@ public class FileReader {
                 String line = reader.nextLine();
                 String[] lineElements = line.split(",");
                 if (Integer.parseInt(lineElements[0]) == id) {
-                    writer.write(lineElements[0]+","+lineElements[1]+","+(Double.parseDouble(lineElements[2])+amount)+","+lineElements[3]+System.lineSeparator());
+                    if (ischecking) {
+                        writer.write(lineElements[0]+","+lineElements[1]+","+(Double.parseDouble(lineElements[2])+amount)+","+lineElements[3]+"," +System.lineSeparator());
+                    }else{
+                        writer.write(lineElements[0]+","+lineElements[1]+","+ lineElements[2]+","+(Double.parseDouble(lineElements[3])+amount)+ "," +System.lineSeparator());
+                    }
+                   
                 }
                 else writer.write(line+System.lineSeparator());
             }

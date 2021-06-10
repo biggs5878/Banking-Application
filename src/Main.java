@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 public class Main {
     public static void main (String args[]) {
@@ -17,12 +18,29 @@ public class Main {
                 inputString = input.nextLine();
                 System.out.println("Please enter deposit amount.");
                 String inputString2 = input.nextLine();
-                Account.depositCheckings(Integer.parseInt(inputString),Double.parseDouble(inputString2));
+                System.out.println("Would you like to do checkings or savings?");
+                String inputString3 = input.nextLine().toLowerCase();
+                
+                if (inputString3.equals("checkings")){
+                    Account.depositCheckings(Integer.parseInt(inputString),Double.parseDouble(inputString2));
+                } else {
+                    Account.depositSavings(Integer.parseInt(inputString),Double.parseDouble(inputString2));
+                }
+                
             }
             if (inputString.equals("3")) {
                 System.out.println("Please enter your account ID.");
                 inputString = input.nextLine();
-                Account.viewAccount(Integer.parseInt(inputString));
+                System.out.println("Please enter withdraw amount.");
+                String inputString2 = input.nextLine();
+                System.out.println("Would you like to do checkings or savings?");
+                String inputString3 = input.nextLine().toLowerCase();
+    
+                if (inputString3.equals("checkings")){
+                    Account.withdrawCheckings(Integer.parseInt(inputString),Double.parseDouble(inputString2));
+                } else {
+                    Account.withdrawSavings(Integer.parseInt(inputString),Double.parseDouble(inputString2));
+                }
             }
             if (inputString.equals("4")) {
                 System.out.println("Please enter your account ID.");
