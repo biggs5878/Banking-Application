@@ -43,14 +43,14 @@ public class Main {
                 }
             }
             if (inputString.equals("4")) {
-                System.out.println("Please enter your account ID.");
+                System.out.println("Please enter your name.");
                 inputString = input.nextLine();
-                Account.viewAccount(Integer.parseInt(inputString));
+                Account.createAccount(inputString);
             }
             if (inputString.equals("5")) {
                 System.out.println("Please enter your account ID.");
                 inputString = input.nextLine();
-                Account.viewAccount(Integer.parseInt(inputString));
+                Account.deleteaccount(Integer.parseInt(inputString));
             }
         }
     }

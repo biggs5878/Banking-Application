@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.Scanner;
-
+import java.util.Random;
 public class FileReader {
     public String getName(int id) {
         try {
@@ -93,5 +93,68 @@ public class FileReader {
         } catch (FileNotFoundException ex) {
         } catch (IOException ex) {
         }
+    }
+    public int  newaccount(String name ) {
+        try {
+            Random r = new Random();
+            File data = new File("src//data.csv");
+            boolean isunique = true;
+            int id;
+            do {
+              isunique = true;
+                 id = 100000000 + r.nextInt(900000000);
+                Scanner reader = new Scanner(data);
+                while (reader.hasNextLine()){
+                    String[] lineelements = reader.nextLine().split(",");
+                    if (Integer.parseInt(lineelements[0] )== id){
+                        isunique = false;
+                        break;
+                    }
+                }
+            } while (!isunique);
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(data,true));
+            writer.write(id +","+ name +","+ 0 +","+ 0 +"," +System.lineSeparator());
+            writer.flush();
+            writer.close();
+            return id;
+        } catch (IOException ex) {
+
+        } return 0;
+
+    }
+    public void removeaccount(int id){
+        try {
+            File temp = new File("src//tempdata.csv");
+            File data = new File("src//data.csv");
+            BufferedWriter copyWriter = new BufferedWriter(new FileWriter(temp,false));
+            Scanner reader = new Scanner(temp);
+            Scanner copyReader = new Scanner(data);
+
+            while (copyReader.hasNextLine()) {
+                String copyLine = copyReader.nextLine();
+                copyWriter.write(copyLine+"\n");
+            }
+            copyWriter.flush();
+            copyWriter.close();
+            copyReader.close();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(data,false));
+
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                String[] lineElements = line.split(",");
+                if (Integer.parseInt(lineElements[0]) != id) {
+                    writer.write(line+System.lineSeparator());
+
+                }
+
+            }
+            writer.flush();
+            writer.close();
+            reader.close();
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
+
     }
 }
