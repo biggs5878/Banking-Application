@@ -6,7 +6,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the banking app!");
         while (true) {
-            System.out.println("Options:\n1. View Account\n2. Deposit\n3. Withdraw\n4. Create Account\n5. Delete Account");
+            System.out.println("Options:\n1. View Account\n2. Deposit\n3. Withdraw\n4. Create Account\n5. Delete Account \n6. Exit");
             String inputString = input.nextLine();
             if (inputString.equals("1")) {
                 System.out.println("Please enter your account ID.");
@@ -51,6 +51,11 @@ public class Main {
                 System.out.println("Please enter your account ID.");
                 inputString = input.nextLine();
                 Account.deleteaccount(Integer.parseInt(inputString));
+            }
+                if (inputString.equals("6")){
+                    System.out.println("Thankyou for using our banking app!");
+                break;
+
             }
         }
     }
